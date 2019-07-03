@@ -1,16 +1,32 @@
 #pragma once
+#include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-
+#include "Inputs.h"
+#include "TileMap.h"
+#include "MoveableEntity.h"
 //Game class holds all game systems and handles update and render call.
 class Game
 {
 public:
-	Game(sf::Uint32 windowWidth, sf::Uint32 windowHeight, std::string title);
+	Game();
 	~Game();
 
-	void update(sf::Time elapsed);
+	void run();
+	void update(float elapsed);
 	void render();
+	void handleInputs();
+	void HandleEvents();
 
-	sf::Window* mWindow;
+	bool load();
+	void init();
+	void InitWindow();
+
+	bool paused;
+
+	sf::RenderWindow mWindow;
+	sf::View view;
+	Inputs inputs;
+	TileMap map;
+	MoveableEntity guy;
 };
 
