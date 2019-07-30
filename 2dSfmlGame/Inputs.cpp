@@ -11,10 +11,11 @@ Inputs::Inputs()
 
 Inputs::~Inputs()
 {
-	delete keys;
+	delete[] keys;
 	keys = nullptr;
 }
 
+//KEYBOARD INPUT
 void Inputs::Press(sf::Keyboard::Key key) {
 	keys[key].isPressed = true;
 	keys[key].onPressed = true;
@@ -51,3 +52,18 @@ bool Inputs::onReleased(sf::Keyboard::Key k) {
 bool Inputs::isPressed(sf::Keyboard::Key k) {
 	return keys[k].isPressed;
 }
+
+////MOUSE INPUT
+//void Inputs::Press(sf::Event::MouseButtonEvent mouseEvent) {
+//	if (mouseEvent.button == sf::Mouse::Button::Left)
+//	{	//inputs LMB onclicked
+//
+//	}
+//	else {
+//		if (mouseEvent.button == sf::Mouse::Button::Right) {
+//			//inputs RMB onclicked
+//
+//		}
+//
+//	}
+//}

@@ -16,6 +16,8 @@ public:
 	};
 
 	void Press(sf::Keyboard::Key);
+	//void Press(sf::Event::MouseButtonEvent);
+
 	void Release(sf::Keyboard::Key);
 	void Update();
 	void Reset();
@@ -25,5 +27,6 @@ public:
 	bool isPressed(sf::Keyboard::Key k);
 	//array of keyboard states
 	KeyVal* keys;
+	
 };
 

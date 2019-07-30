@@ -2,15 +2,18 @@
 
 StaticEntity::StaticEntity()
 {
+
 }
 
 
 StaticEntity::~StaticEntity()
 {
+
 }
 
-void StaticEntity::Init() 
+void StaticEntity::Init(ResourceManager* r) 
 {
+	rm = r;
 }
 
 
@@ -18,13 +21,10 @@ void StaticEntity::Init()
 //Returns TRUE if Loading FAILS
 bool StaticEntity::Load(const std::string& spriteTexture, sf::Vector2u frameSizePx, unsigned int numFramesWidth, unsigned int numFramesHeight)
 {
-
-	if (!Entity::m_texture.loadFromFile(spriteTexture)) {
-		DBOUT( "failed to load texture" << spriteTexture)
+	if (LoadTexture(spriteTexture))
 		return EXIT_FAILURE;
 
-	}
-	setTexture(Entity::m_texture);
+	setTexture(*m_ptexture);
 
 	//frames, as in animation frames
 	m_frameSize = frameSizePx;

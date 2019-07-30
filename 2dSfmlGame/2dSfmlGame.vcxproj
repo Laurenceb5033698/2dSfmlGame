@@ -129,9 +129,12 @@
   <ItemGroup>
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameLevel.cpp" />
     <ClCompile Include="Inputs.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveableEntity.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="StaticEntity.cpp" />
     <ClCompile Include="TextureCache.cpp" />
     <ClCompile Include="TileMap.cpp" />
@@ -140,11 +143,19 @@
   <ItemGroup>
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameLevel.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="MoveableEntity.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="sfVectorMath.h" />
     <ClInclude Include="StaticEntity.h" />
     <ClInclude Include="TextureCache.h" />
     <ClInclude Include="TileMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="resources\levelData\level1.txt" />
+    <Text Include="resources\levelData\level2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

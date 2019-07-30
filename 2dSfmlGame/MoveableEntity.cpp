@@ -1,20 +1,24 @@
 #include "MoveableEntity.h"
 
+
 MoveableEntity::MoveableEntity() :
 	direction(0),
 	speed(100),
 	sprintSpeed(240),
 	sprinting(false)
 {
+
 }
 
 
 MoveableEntity::~MoveableEntity()
 {
+
 }
 
-void MoveableEntity::Init() 
+void MoveableEntity::Init(ResourceManager* r)
 {
+	rm = r;
 	setPosition(0, 0);
 	setOrigin(32, 32);
 }
@@ -24,13 +28,10 @@ void MoveableEntity::Init()
 //Returns TRUE if Loading FAILS
 bool MoveableEntity::Load(const std::string& spriteTexture, sf::Vector2u frameSizePx, unsigned int numFramesWidth, unsigned int numFramesHeight) 
 {
-
-	if (!Entity::m_texture.loadFromFile(spriteTexture)) {
-		DBOUT( "failed to load texture" << spriteTexture);
+	if (LoadTexture(spriteTexture))	
 		return EXIT_FAILURE;
-		
-	}
-	setTexture(Entity::m_texture);
+
+	setTexture(*m_ptexture);
 
 	//frames, as in animation frames
 	m_frameSize = frameSizePx;
@@ -46,6 +47,7 @@ bool MoveableEntity::Load(const std::string& spriteTexture, sf::Vector2u frameSi
 	setTextureRect(m_frames[direction]);
 	return EXIT_SUCCESS;
 }
+
 
 void MoveableEntity::Update(float deltaTime) {
 	Movement(deltaTime);
