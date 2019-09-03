@@ -70,6 +70,7 @@ bool TileMap::load(const std::string& texturePath, sf::Vector2u tileSize,  int* 
 			quad[1].texCoords = sf::Vector2f((tu + 1) * tileSize.x, tv * tileSize.y);
 			quad[2].texCoords = sf::Vector2f((tu + 1) * tileSize.x, (tv + 1) * tileSize.y);
 			quad[3].texCoords = sf::Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
+
 		}
 	
 	
@@ -110,9 +111,37 @@ sf::Vector2i TileMap::changeTile(sf::Vector2f position, sf::Uint32 newTileTex) {
 			quad[1].texCoords = sf::Vector2f((tu + 1) * SizeOfTileTexturesPixels.x, tv * SizeOfTileTexturesPixels.y);
 			quad[2].texCoords = sf::Vector2f((tu + 1) * SizeOfTileTexturesPixels.x, (tv + 1) * SizeOfTileTexturesPixels.y);
 			quad[3].texCoords = sf::Vector2f(tu * SizeOfTileTexturesPixels.x, (tv + 1) * SizeOfTileTexturesPixels.y);
+
+
 			return sf::Vector2i(Tilex, Tiley);
 		}
 	return sf::Vector2i(-1,-1);
+}
+
+sf::Vector2i TileMap::getTileFromPosition(sf::Vector2f worldPos)
+{
+	if ((worldPos.x > getPosition().x) && (worldPos.x < getPosition().x + LevelDimensions.x))
+		if ((worldPos.y > getPosition().y) && (worldPos.y < getPosition().y + LevelDimensions.y)) {
+			//inside level
+			sf::Vector2f temppos = worldPos - getPosition();
+			int Tilex = (int(temppos.x) / SizeOfTileTexturesPixels.x);
+			int Tiley = (int(temppos.y) / SizeOfTileTexturesPixels.y);
+			return sf::Vector2i(Tilex, Tiley);
+		}
+	//outside level
+	return sf::Vector2i(-1,-1);
+}
+
+sf::Vector2f TileMap::getPositionFromTile(sf::Vector2i tileNum)
+{
+	sf::Vector2f resultpos;
+	if(tileNum.x >= 0 && tileNum.y >= 0)
+		if (tileNum.x < TilesInLevel.x && tileNum.y < TilesInLevel.y) {
+			//inside level bounds
+			resultpos = getPosition() + sf::Vector2f(tileNum.x *pTiledata->tileSize.x, tileNum.y * pTiledata->tileSize.y);
+		}
+
+	return resultpos;
 }
 
 //Generate new map

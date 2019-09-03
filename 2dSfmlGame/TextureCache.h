@@ -9,6 +9,10 @@ public:
 	TextureCache();
 	~TextureCache();
 
+	//Loads texture, does not pass pointer back
+	//returns bool of result
+	bool LoadTexture(const std::string& texturePath);
+
 	//loads then passes back pointer to texture
 	//returns bool of result
 	bool LoadTexture(const std::string& texturePath, std::shared_ptr<sf::Texture>& pTex);

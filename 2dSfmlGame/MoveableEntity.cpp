@@ -1,5 +1,5 @@
 #include "MoveableEntity.h"
-
+#include "sfVectorMath.h"
 
 MoveableEntity::MoveableEntity() :
 	direction(0),
@@ -55,29 +55,23 @@ void MoveableEntity::Update(float deltaTime) {
 	velocity = sf::Vector2f(0, 0);
 }
 void MoveableEntity::Animate(float deltaTime) {
-
-}
-
-
-void MoveableEntity::Movement(float dt) {
 	if (velocity.x != 0 || velocity.y != 0) {
-		float mag(sqrtf(velocity.x*velocity.x + velocity.y*velocity.y));
-
-		//float xvel = vec.x / mag;	//normalize
-		//float yvel = vec.y / mag;	//normalize
 
 		//down =0, right=1, up = 2, left = 3
 		if (velocity.y == 0)
 			direction = velocity.x > 0 ? 1 : 3;
 		if (velocity.x == 0)
 			direction = velocity.y > 0 ? 0 : 2;
-		//if (velocity.y < 0 && velocity.x > 0)
-		//	direction = 2;
-		//if (velocity.y > 0 && velocity.x < 0)
-		//	direction = 0;
 
 		setTextureRect(m_frames[direction]);
+	}
+}
 
+
+void MoveableEntity::Movement(float dt) {
+	
+	float mag( sfm::length(velocity) );
+	if (mag > 0) {
 		velocity /= mag;//normalize
 		move(velocity * dt * (sprinting ? sprintSpeed : speed) );
 	}

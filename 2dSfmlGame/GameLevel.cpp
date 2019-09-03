@@ -9,28 +9,41 @@
 
 
 GameLevel::GameLevel()
+	:_GridData(NULL)
 {
 }
 
 
 GameLevel::~GameLevel()
 {
+	_Trees.clear();
+	if (_GridData != NULL)
+		delete[] _GridData;
 }
 
 void GameLevel::Init(ResourceManager* r) 
 {
+	rm = r;
 	_tileMap.Init(r);
-	_doodads.Init(r);
+	
 
 }
 
+void GameLevel::Update(float dt) 
+{
+	for (int i(0); i < _Trees.size(); ++i) {
+		_Trees.at(i).Update(dt);
+	}
+}
 
 
 
 void GameLevel::Draw(sf::RenderWindow& rWind) 
 {
 	rWind.draw(_tileMap);
-	rWind.draw(_doodads);
+	for (int i(0); i < _Trees.size(); ++i) {
+		rWind.draw(_Trees.at(i));
+	}
 
 }
 
@@ -107,16 +120,33 @@ bool GameLevel::LoadTilemap(std::string filepath)
 		DBOUT("Failed to load tilemap from leveldata");
 		return EXIT_FAILURE;
 	}
-	//make levelDoodad data
-	_currentDoodadData.SetData("resources/sprites/Doodads_less.png",64,64,nullptr,_currentLevelData.leveldim.x,_currentLevelData.leveldim.y);
-	//Doodad data is based on _currentlevel dimensions, but uses a different tileset and generates doodads by seed.
-	if(_doodads.GenerateMap(_currentDoodadData))
-	{
-		DBOUT("Failed to load doodads.");
-		return EXIT_FAILURE;
-	}
+	//create collision grid data based on level size
+	createGridData();
+	
 	return EXIT_SUCCESS;
 }
+
+void GameLevel::createGridData() 
+{
+	if (_GridData != NULL)
+		delete[] _GridData;
+	size_t levelBufferLength = _currentLevelData.leveldim.x * _currentLevelData.leveldim.y;
+	_GridData = new int[levelBufferLength]();	//initialized with 0s
+	//if impassable terrain in level, add to _gridData as 1s
+}
+
+	//Load all the icons that are used on the map
+bool GameLevel::LoadResources() 
+{	
+	//count if any failed to load
+	int failed = 0;
+	//add any true value to the failed count
+	failed += rm->LoadTexture("resources/sprites/trees2.png");
+	
+
+	return failed > 0;	//if any failed, then return true
+}
+
 
 //Helpers
 sf::Vector2f GameLevel::getCentre() {
@@ -131,4 +161,57 @@ int GameLevel::getNumTiles()
 {
 	return _tileMap.getNumTiles();
 }
+
+//
+void GameLevel::addTree(sf::Vector2i tile)
+{
+	//create Sprite
+	Trees aTree;
+	//init sprite
+	aTree.Init(rm);
+	//load sprite texture
+	if (aTree.Load("resources/sprites/trees2.png")) {
+	//	failed to load texture
+	//	do not add sprite
+		return;
+	}
+	//else
+	//if success
+	//	position object
+	//	get tile
+	
+	//test tile against grid
+	if (testTile(tile))
+	{
+		setGridTile(tile);
+		aTree.setPosition(_tileMap.getPositionFromTile(tile));
+
+		//	add to list
+		_Trees.push_back(aTree);
+		DBOUT("Tree added");
+		return;
+	}
+	DBOUT("Failed to add tree");
+}
+
+bool GameLevel::testTile(sf::Vector2i mytile)
+{
+
+	//is mytile inside bounds
+
+	//test vs grid
+	if ( !_GridData[mytile.x + mytile.y *_currentLevelData.leveldim.x])
+		return true;	//a 0 in _gridData is a free spot
+
+	return false;
+}
+
+void GameLevel::setGridTile(sf::Vector2i mytile)
+{
+	//is mytile inside bounds
+	//set grid
+	_GridData[mytile.x + mytile.y *_currentLevelData.leveldim.x] = 1;
+}
+
+
 

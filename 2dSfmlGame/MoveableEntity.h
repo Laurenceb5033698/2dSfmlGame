@@ -17,7 +17,7 @@ public:
 
 	//Load asset and initialise required rendering data
 	//Returns TRUE if Loading FAILS
-	bool Load(const std::string& spriteTexture, sf::Vector2u frameSize, unsigned int numFramesWidth, unsigned int numFramesHeight) override;
+	virtual bool Load(const std::string& spriteTexture, sf::Vector2u frameSize, unsigned int numFramesWidth, unsigned int numFramesHeight) override;
 	
 	void Init(ResourceManager* rm) override;
 	void Update(float dt) override;

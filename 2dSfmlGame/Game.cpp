@@ -23,7 +23,11 @@ bool Game::load() {
 		DBOUT("reading loading tilemap failed.");
 		return EXIT_FAILURE;
 	}
-
+	if ( gameLevel.LoadResources())
+	{
+		DBOUT("loading resources failed.");
+		return EXIT_FAILURE;
+	}
 
 	if (guy.Load("resources/sprites/man_sprite.png",sf::Vector2u(64,64),4,1))
 		return EXIT_FAILURE;
@@ -48,6 +52,9 @@ void Game::init() {
 void Game::SetupGame()
 {
 	guy.setPosition(gameLevel.getCentre());
+	gameLevel.addTree(sf::Vector2i(4, 4));
+	gameLevel.addTree(sf::Vector2i(4, 6));
+	gameLevel.addTree(sf::Vector2i(5, 4));
 
 }
 
@@ -55,8 +62,8 @@ void Game::SetupGame()
 void Game::update(float elapsed) {
 	handleInputs();	//user inputs for this game tick
 	//game logic
+	gameLevel.Update(elapsed);
 	guy.Update(elapsed);
-
 }
 
 void Game::render() {

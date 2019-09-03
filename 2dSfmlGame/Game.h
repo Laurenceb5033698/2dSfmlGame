@@ -25,6 +25,7 @@ public:
 	void SetupGame();
 	void InitWindow();
 
+
 	bool paused;
 
 	sf::RenderWindow mWindow;
@@ -37,6 +38,5 @@ public:
 	GameLevel gameLevel;
 
 };
-
 
 

@@ -63,6 +63,9 @@ public:
 
 	sf::Vector2i changeTile(sf::Vector2f posistion, sf::Uint32 newTileTex);
 
+	sf::Vector2i getTileFromPosition(sf::Vector2f worldPos);
+	sf::Vector2f getPositionFromTile(sf::Vector2i TileNumb);
+
 private:
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -72,7 +75,7 @@ private:
 	//level/texture data: owned by GameLevel
 	LevelTileData * pTiledata ;	
 
-	sf::Vector2u SizeOfTileTexturesPixels;//dimension of texture in pixels
+	sf::Vector2u SizeOfTileTexturesPixels;//dimension of Tile in pixels
 	sf::Vector2u LevelDimensions;		//dimensions of level in pixels
 	sf::Vector2u TilesInLevel;			//dimension of level in tiles
 	sf::Uint32 NumberOfTilesInTexture;	//number of tiles in texture
