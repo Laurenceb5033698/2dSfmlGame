@@ -4,7 +4,7 @@
 #include "Inputs.h"
 //#include "TileMap.h"
 #include "MoveableEntity.h"
-#include "Player.h"
+#include "DebugFella.h"
 #include "ResourceManager.h"
 #include "GameLevel.h"
 //Game class holds all game systems and handles update and render call.
@@ -34,7 +34,7 @@ public:
 	ResourceManager resourceManager;
 
 	//TileMap map;
-	Player guy;
+	DebugFella guy;
 	GameLevel gameLevel;
 
 };

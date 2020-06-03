@@ -18,7 +18,7 @@ bool Game::load() {
 	//tilemap. todo move to make tilemap load from a level-data class
 	//tilemap class should be a tool that game class uses to load levels
 	
-	if (gameLevel.LoadTilemap("resources/levelData/level2.txt"))
+	if (gameLevel.LoadTilemap("resources/levelData/level1.txt"))
 	{
 		DBOUT("reading loading tilemap failed.");
 		return EXIT_FAILURE;
@@ -29,7 +29,7 @@ bool Game::load() {
 		return EXIT_FAILURE;
 	}
 
-	if (guy.Load("resources/sprites/man_sprite.png",sf::Vector2u(64,64),4,1))
+	if (guy.Load("resources/AnimationData/DebugFella1.txt"))
 		return EXIT_FAILURE;
 	
 
@@ -83,27 +83,23 @@ void Game::render() {
 
 
 void Game::handleInputs() {
+	sf::Vector2f velocity(0,0);
+	if (inputs.isPressed(sf::Keyboard::D)) {
+		velocity += sf::Vector2f(1.0f, 0);
+	}
+	if (inputs.isPressed(sf::Keyboard::A))	{
+		velocity += sf::Vector2f(-1.0f, 0);
+	}
+	if (inputs.isPressed(sf::Keyboard::S))	{
+		velocity += sf::Vector2f(0, 1.0f);
+	}
+	if (inputs.isPressed(sf::Keyboard::W))	{
+		velocity += sf::Vector2f(0, -1.0f);
+	}
+		guy.GetVelocity() = velocity;
 	
 
-	if (inputs.isPressed(sf::Keyboard::D)) 
-	{
-		guy.GetVelocity() += sf::Vector2f(1.0f, 0);
-	}
-	if (inputs.isPressed(sf::Keyboard::A))
-	{
-		guy.GetVelocity() += sf::Vector2f(-1.0f, 0);
-
-	}
-	if (inputs.isPressed(sf::Keyboard::S))
-	{
-		guy.GetVelocity() += sf::Vector2f(0, 1.0f);
-
-	}
-	if (inputs.isPressed(sf::Keyboard::W))
-	{
-		guy.GetVelocity() += sf::Vector2f(0, -1.0f);
-
-	}
+	
 
 	//change terraintype
 	if (inputs.onPressed(sf::Keyboard::Q))

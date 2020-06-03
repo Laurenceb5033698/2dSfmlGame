@@ -1,0 +1,7 @@
+resources/sprites/ManAnimated.png
+64 64
+0 4
+4 4
+8 4
+12 4
+16 6

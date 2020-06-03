@@ -11,7 +11,6 @@ public:
 	~StaticEntity();
 
 	bool Load(const std::string& spriteTexture, sf::Vector2u frameSize, unsigned int numFramesWidth, unsigned int numFramesHeight);
-	void Init(ResourceManager * rm);
 
 	void Update(float dt);
 	void Animate(float dt);	//Animate is like update but just for animating

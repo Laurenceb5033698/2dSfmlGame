@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -134,7 +135,7 @@
     <ClCompile Include="Inputs.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveableEntity.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="DebugFella.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StaticEntity.cpp" />
@@ -146,13 +147,14 @@
     <ClCompile Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLevel.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="MoveableEntity.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="DebugFella.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="sfVectorMath.h" />
     <ClInclude Include="Sprite.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="Trees.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="resources\AnimationData\DebugFella1.txt" />
     <Text Include="resources\levelData\level1.txt" />
     <Text Include="resources\levelData\level2.txt" />
   </ItemGroup>

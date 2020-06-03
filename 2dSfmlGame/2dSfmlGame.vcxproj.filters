@@ -19,6 +19,9 @@
     <Filter Include="Resource Files\levelData">
       <UniqueIdentifier>{2a1dbcbe-e828-4687-a8d0-f73f2dac3420}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\animationData">
+      <UniqueIdentifier>{8189b08b-c638-43ea-af22-49c471d32281}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,9 +57,6 @@
     <ClCompile Include="GameLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Trees.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -71,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="Building.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugFella.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +107,6 @@
     <ClInclude Include="GameLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sfVectorMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -122,6 +125,12 @@
     <ClInclude Include="Building.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DebugFella.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="resources\levelData\level1.txt">
@@ -129,6 +138,9 @@
     </Text>
     <Text Include="resources\levelData\level2.txt">
       <Filter>Resource Files\levelData</Filter>
+    </Text>
+    <Text Include="resources\AnimationData\DebugFella1.txt">
+      <Filter>Resource Files\animationData</Filter>
     </Text>
   </ItemGroup>
 </Project>
